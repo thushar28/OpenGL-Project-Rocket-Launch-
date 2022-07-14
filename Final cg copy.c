@@ -145,6 +145,26 @@ glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,str15[i]);
 glEnd();
 glFlush();
 }
+void last()
+{
+	glClearColor(0,0,0,0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,1000,0,1000);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glColor3ub(3, 132, 252);
+	glTranslatef(200,500,0);
+	glScalef(0.6,0.6,0.0);
+	char last[]="Launch Successfull";
+	for(i=0;i<strlen(last);i++)
+	{
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,last[i]);
+	}
+	glEnd();
+	glFlush();
+}
 void rstand()
 {
 	glBegin(GL_POLYGON);//grey stand
@@ -220,58 +240,82 @@ void rstand()
 }
 void star()
 {
-	glPointSize(3);
+glPointSize(3);
 	glBegin(GL_POINTS);
 	glColor3f(1.0, 1.0, 1.0);
-	glVertex2i(-200,-10);
-	glVertex2i(-250,220);
-	glVertex2i(-150,470);
-	glVertex2i(-180,840);
-	glVertex2i(-220,1150);
-	glVertex2i(-170,1380);
 	glVertex2i(10,40);
 	glVertex2i(-50,150);
 	glVertex2i(15,360);
 	glVertex2i(37,750);
 	glVertex2i(18,1000);
 	glVertex2i(10,1350);
+	glVertex2i(10,1650);
 	glVertex2i(190,5);
 	glVertex2i(250,200);
 	glVertex2i(180,550);
 	glVertex2i(220,800);
 	glVertex2i(190,1100);
-	glVertex2i(150,1400);
+	glVertex2i(190,1300);
+	glVertex2i(150,1900);
 	glVertex2i(400,200);
-	glVertex2i(600,500);
-	glVertex2i(350,800);
-	glVertex2i(370,1100);
-	glVertex2i(390,1400);
-	//glVertex2i(620,1);
-	glVertex2i(660,200);
 	glVertex2i(380,500);
+	glVertex2i(350,800);
+	glVertex2i(350,1050);
+	glVertex2i(370,1350);
+	glVertex2i(370,1660);
+	glVertex2i(320,1800);
+	glVertex2i(660,200);
+	glVertex2i(600,500);
 	glVertex2i(590,800);
 	glVertex2i(610,1100);
 	glVertex2i(650,1400);
+	glVertex2i(650,1880);
 	glVertex2i(750,1);
 	glVertex2i(770,200);
 	glVertex2i(830,500);
 	glVertex2i(790,800);
 	glVertex2i(830,1100);
 	glVertex2i(780,1400);
+	glVertex2i(780,1800);
+	
 	glVertex2i(1050,200);
 	glVertex2i(950,500);
 	glVertex2i(990,800);
 	glVertex2i(1030,1100);
 	glVertex2i(1090,1400);
+	glVertex2i(1090,1850);
 	//glVertex2i(1180,1);
 	glVertex2i(1240,200);
 	glVertex2i(1220,500);
 	glVertex2i(1180,800);
 	glVertex2i(1150,1100);
 	glVertex2i(1220,1400);
+		glVertex2i(1400,-10);
+	glVertex2i(1450,220);
+	glVertex2i(1450,470);
+	glVertex2i(1480,840);
+	glVertex2i(1420,1150);
+	glVertex2i(1470,1380);
+	glVertex2i(1420,1690);
+	glVertex2i(1470,1900);
+	glVertex2i(1600,-10);
+	glVertex2i(1620,220);
+	glVertex2i(1650,470);
+	glVertex2i(1680,840);
+	glVertex2i(1620,1100);
+	glVertex2i(1670,1380);
+	glVertex2i(1610,1530);
+	glVertex2i(1690,1810);
+	glVertex2i(1800,-10);
+	glVertex2i(1850,220);
+	glVertex2i(1830,470);
+	glVertex2i(1880,840);
+	glVertex2i(1820,1150);
+	glVertex2i(1870,1380);
+	glVertex2i(1830,1570);
+	glVertex2i(1860,1760);
 	glEnd();
-	glFlush();
-
+	glFlush();	
 }
 void rocket()
 {
@@ -386,7 +430,7 @@ void rocket1()
 {
 	if(y<=1800)
 	{	
-		y=y+2;
+		y=y+4;
 		glutPostRedisplay();
 	}
 	glClearColor(0.5,1.0,1.0,1.0);
@@ -473,7 +517,7 @@ void rocket2()
 {
 	if(r2x<=2800)
 	{	
-		r2x=r2x+2;
+		r2x=r2x+4;
 		glutPostRedisplay();
 	}
 	glClearColor(0.0,0.0,0.2,1.0);
@@ -662,6 +706,16 @@ void display()
 	else if(s==4)
 	{
 		glutTimerFunc(15,rocket2,0);
+		if(r2x==2800)
+		{
+			s=5;
+			//last();
+			glutPostRedisplay();
+		}
+	}
+	else if(s==5)
+	{
+		last();
 	}
 }
 int main(int argc,char *argv[])
